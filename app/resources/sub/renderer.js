@@ -13,33 +13,25 @@ state = 1; //loading
 document.getElementById("menu").innerHTML = '<p class="text-align: center;">loading...</p>'
 document.getElementById("version").innerHTML = "v"+package.version;
 
-//run once on settings load
-request.get('http://azureagst.pw/switchrpc/master.json', function(err, response, body){
-  if (err) console.log("what the fuck");
-  if (!response){
-    console.log("uh... no response?");
-    document.getElementById("menu").innerHTML = "uh please reload";
-  }
-  if (response.statusCode != 200) console.log("not 200");
-  master = JSON.parse(body);
-  var tempgame;
+master = JSON.parse(fs.readFileSync("../docs/master.json"));
 
-  options = "<form id='gamepicker'>"
-  for (i=0; i<master.gamelist.length; i++){
-      tempgame = master.games[master.gamelist[i]];
-      options += '<input type="checkbox" id='+master.gamelist[i]+'>'+tempgame.fullname+"</input><br>";
-  }
-  options += "</form>"
-  document.getElementById("menu").innerHTML = options;
+var tempgame;
 
-  //enable games already in games.json
-  var currentgames = Object.keys(JSON.parse(fs.readFileSync("./games.json")));
-  for (i=0;i<currentgames.length;i++){
-    document.getElementById(currentgames[i]).checked = true;
-  }
+options = "<form id='gamepicker'>"
+for (i=0; i<master.gamelist.length; i++){
+    tempgame = master.games[master.gamelist[i]];
+    options += '<input type="checkbox" id='+master.gamelist[i]+'>'+tempgame.fullname+"</input><br>";
+}
+options += "</form>"
+document.getElementById("menu").innerHTML = options;
 
-  state = 0;
-});
+//enable games already in games.json
+var currentgames = Object.keys(JSON.parse(fs.readFileSync("./games.json")));
+for (i=0;i<currentgames.length;i++){
+  document.getElementById(currentgames[i]).checked = true;
+}
+
+state = 0;
 
 document.getElementById("submit-btn").addEventListener("click", function (e) {
   if (state != 0){
