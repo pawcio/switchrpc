@@ -20,7 +20,7 @@ var stash = new Object();
 stash.gamename = stash.gamestate = "";
 
 // don't change the client id if you want this example to work
-const ClientId = '439883639539499019';
+const ClientId = '471770101893300234';
 
 // change next line if you want development config
 let dev = false;
