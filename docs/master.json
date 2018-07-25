@@ -66,7 +66,8 @@
     "monopoly",
     "jpp2",
     "taiko",
-    "smania"
+    "smania",
+    "atelierls"
   ],
   "games": {
     "splatoon": {
@@ -774,6 +775,13 @@
         "Playing in a Sonic Stage",
         "Playing in a Classic Stage",
         "Playing in an Avatar Stage"
+      ]
+    },
+    "atelierls": {
+      "fullname": "Atelier Lydie & Suelle The Alchemists and the Mysterious Paintings",
+      "appiconid": "atelierls",
+      "states": [
+        "Don't Display State"
       ]
     }
   }
